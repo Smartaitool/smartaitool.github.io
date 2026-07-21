@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Launch — Get Early Access</title>
-<meta name="description" content="Sign up for early access, check out the product, or chat with us directly.">
+<title>Best AI Tools for Your Business — Get Early Access</title>
+<meta name="description" content="Sign up to learn how to use the best AI tools, like Claude, in your business every day. Chat directly on WhatsApp or email.">
 
 <!--
   =====================================================================
@@ -44,10 +44,10 @@
      Type: Fraunces (display, characterful serif) + Work Sans (body/UI).
      --------------------------------------------------------------- */
   :root{
-    --ink:        #12161c;
-    --ink-2:      #191f27;
+    --ink:        #0f1e1c;
+    --ink-2:      #16302c;
     --porcelain:  #f3f1ea;
-    --periwinkle: #8f97ab;
+    --periwinkle: #9db3ac;
     --amber:      #f2a93b;
     --amber-dim:  #c98a2e;
     --line:       rgba(243,241,234,0.12);
@@ -109,6 +109,18 @@
     color: var(--porcelain);
   }
   .brand span{ color: var(--amber); }
+
+  .header-right{
+    display:flex;
+    align-items:center;
+    gap: 18px;
+  }
+
+  .header-socials{
+    display:flex;
+    align-items:center;
+    gap: 10px;
+  }
 
   .header-links{
     display:flex;
@@ -251,7 +263,7 @@
   .footer-inner{
     display:flex;
     align-items:center;
-    justify-content: space-between;
+    justify-content: center;
     flex-wrap: wrap;
     gap: 16px;
   }
@@ -307,14 +319,30 @@
      in the script at the bottom — edit the values there, not here. -->
 <header>
   <div class="wrap header-inner">
-    <a href="#top" class="brand" id="brandName">Brand<span>.</span></a>
+    <a href="#top" class="brand" id="brandName">Wealth<span>.</span></a>
 
-    <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu" aria-expanded="false">☰</button>
+    <div class="header-right">
+      <!-- Social links now live here in the header. Destinations come
+           from CONFIG.socials.x / CONFIG.socials.linkedin below. -->
+      <div class="header-socials">
+        <a class="social-link" id="xLink" href="#" target="_blank" rel="noopener" aria-label="Follow on X">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.9 2H22l-7.6 8.7L23.3 22h-6.9l-5.4-6.9L4.8 22H1.7l8.1-9.3L1 2h7l4.9 6.3L18.9 2Zm-1.2 18h1.9L7.4 3.9H5.4L17.7 20Z"/></svg>
+        </a>
+        <a class="social-link" id="linkedinLink" href="#" target="_blank" rel="noopener" aria-label="Connect on LinkedIn">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5ZM3 9h4v12H3V9Zm7 0h3.8v1.7h.05c.53-1 1.83-2 3.77-2 4.03 0 4.78 2.65 4.78 6.1V21h-4v-5.5c0-1.3-.02-3-1.83-3-1.83 0-2.1 1.43-2.1 2.9V21h-4V9Z"/></svg>
+        </a>
+      </div>
 
-    <nav class="header-links" id="headerLinks">
-      <a class="btn btn-ghost" id="productLinkEl" href="#product" target="_blank" rel="noopener">Product</a>
-      <a class="btn btn-solid" id="signupLinkEl" href="#signup">Sign up</a>
-    </nav>
+      <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu" aria-expanded="false">☰</button>
+
+      <nav class="header-links" id="headerLinks">
+        <!-- The Product link is gated: clicking it before the visitor has
+             signed up scrolls them to the email form instead of navigating
+             away. See CONFIG.productLink and the gating script below. -->
+        <a class="btn btn-ghost" id="productLinkEl" href="https://www.youtube.com/watch?v=ZRb7D6R64hM" target="_blank" rel="noopener">Product</a>
+        <a class="btn btn-solid" id="signupLinkEl" href="#signup">Sign up</a>
+      </nav>
+    </div>
   </div>
 </header>
 
@@ -322,9 +350,9 @@
   <!-- ================= HERO + EMAIL SIGNUP ================= -->
   <section class="hero" id="top">
     <div class="wrap">
-      <span class="eyebrow">Early access</span>
-      <h1>Get in before everyone else does.</h1>
-      <p class="lead">Drop your email and we'll let you know the moment it's ready. No spam, just the launch.</p>
+      <span class="eyebrow">AI tools for your business</span>
+      <h1>Learn to use the best AI tools — like Claude — every day.</h1>
+      <p class="lead">Sign up and get practical, day-to-day ways to use tools like Claude in your business to save time and boost productivity — hand-picked, easy to apply, zero spam. Rather chat? Message me on WhatsApp any time; I don't spam there either.</p>
 
       <!-- EMAIL SIGNUP FORM
            On submit, this currently just validates the email and shows a
@@ -337,7 +365,7 @@
           type="email"
           id="signupEmail"
           name="email"
-          placeholder="you@example.com"
+          placeholder="epemumark@gmail.com"
           required
           aria-label="Email address"
         >
@@ -363,7 +391,7 @@
           </div>
           <h3>Email me</h3>
           <p>Send a message straight to my inbox.</p>
-          <a class="btn btn-ghost" id="emailLink" href="#">Email me</a>
+          <a class="btn btn-ghost" id="emailLink" href="epemumark@gmail.com">Email me</a>
         </div>
 
         <div class="chat-card">
@@ -372,26 +400,17 @@
           </div>
           <h3>Chat on WhatsApp</h3>
           <p>Message straight away, no forms.</p>
-          <a class="btn btn-ghost" id="whatsappLink" href="#" target="_blank" rel="noopener">Chat on WhatsApp</a>
+          <a class="btn btn-ghost" id="whatsappLink" href="https://x.com/BenMarkVictor1" target="_blank" rel="noopener">Chat on WhatsApp</a>
         </div>
       </div>
     </div>
   </section>
 </main>
 
-<!-- ================= FOOTER / SOCIAL LINKS =================
-     X and LinkedIn icons link out to CONFIG.socials.x / CONFIG.socials.linkedin -->
+<!-- ================= FOOTER ================= -->
 <footer>
   <div class="wrap footer-inner">
-    <p class="footer-copy" id="footerCopy">© 2026 Brand. All rights reserved.</p>
-    <div class="socials">
-      <a class="social-link" id="xLink" href="#" target="_blank" rel="noopener" aria-label="Follow on X">
-        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.9 2H22l-7.6 8.7L23.3 22h-6.9l-5.4-6.9L4.8 22H1.7l8.1-9.3L1 2h7l4.9 6.3L18.9 2Zm-1.2 18h1.9L7.4 3.9H5.4L17.7 20Z"/></svg>
-      </a>
-      <a class="social-link" id="linkedinLink" href="#" target="_blank" rel="noopener" aria-label="Connect on LinkedIn">
-        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5ZM3 9h4v12H3V9Zm7 0h3.8v1.7h.05c.53-1 1.83-2 3.77-2 4.03 0 4.78 2.65 4.78 6.1V21h-4v-5.5c0-1.3-.02-3-1.83-3-1.83 0-2.1 1.43-2.1 2.9V21h-4V9Z"/></svg>
-      </a>
-    </div>
+    <p class="footer-copy" id="footerCopy">© 2026 Wealth All rights reserved.</p>
   </div>
 </footer>
 
@@ -402,17 +421,17 @@
      ===================================================================== */
   const CONFIG = {
     brandName: "Brand",                       // shown top-left in the header
-    signupLink: "#signup",                     // header "Sign up" button destination
+    signupLink: "epemumark@gmail.com",                     // header "Sign up" button destination
     productLink: "https://example.com/product", // header "Product" button destination
 
-    contactEmail: "hello@example.com",          // used by the "Email me" button
+    contactEmail: "epemumark@gmail.com",          // used by the "Email me" button
 
     whatsappNumber: "2348000000000",            // digits only, include country code, no + or spaces
     whatsappMessage: "Hi! I'd like to chat about your product.",
 
     socials: {
-      x: "https://x.com/yourhandle",
-      linkedin: "https://www.linkedin.com/in/yourprofile"
+      x: "https://x.com/BenMarkVictor1",
+      linkedin: "https://www.linkedin.com/in/mark-ben-victor-93723b241"
     },
 
     // Optional: point this at a real signup backend (Mailchimp, ConvertKit,
@@ -424,19 +443,53 @@
   /* ---------------------------------------------------------------
      Wire up the header, chat links, and socials from CONFIG.
      --------------------------------------------------------------- */
-  document.getElementById("brandName").innerHTML = `${CONFIG.brandName}<span>.</span>`;
+  document.getElementById("https://www.youtube.com/watch?v=ZRb7D6R64hM").innerHTML = `${CONFIG.brandName}<span>.</span>`;
   document.getElementById("footerCopy").textContent = `© ${new Date().getFullYear()} ${CONFIG.brandName}. All rights reserved.`;
 
-  document.getElementById("signupLinkEl").href = CONFIG.signupLink;
-  document.getElementById("productLinkEl").href = CONFIG.productLink;
+  document.getElementById("epemumark@gmail.com").href = CONFIG.signupLink;
+  document.getElementById("https://www.youtube.com/watch?v=ZRb7D6R64hM").href = CONFIG.productLink;
 
-  document.getElementById("emailLink").href = `mailto:${CONFIG.contactEmail}`;
+  /* ---------------------------------------------------------------
+     Gate the "Product" link behind email signup.
+     Until a visitor has signed up, clicking Product scrolls them to
+     the email form instead of opening CONFIG.productLink. Once they
+     submit a valid email, the gate lifts (remembered via
+     localStorage) and Product opens normally from then on.
+     --------------------------------------------------------------- */
+  const SIGNUP_FLAG = "ghostSignedUp";
+  const productLinkEl = document.getElementById("productLinkEl");
+
+  function hasSignedUp(){
+    return localStorage.getItem(SIGNUP_FLAG) === "true";
+  }
+
+  function markSignedUp(){
+    localStorage.setItem(SIGNUP_FLAG, "true");
+  }
+
+  productLinkEl.addEventListener("click", (e) => {
+    if(!hasSignedUp()){
+      e.preventDefault();
+      document.getElementById("top").scrollIntoView({ behavior: "smooth" });
+      document.getElementById("signupEmail").focus({ preventScroll: true });
+      formNoteEl().textContent = "Pop in your email first — that unlocks the product link.";
+      formNoteEl().className = "form-note error";
+    }
+    // If they've already signed up, this click falls through and
+    // productLinkEl.href (CONFIG.productLink) opens as normal.
+  });
+
+  // small helper so the click handler above can update the note
+  // even though formNote is declared later in this file
+  function formNoteEl(){ return document.getElementById("formNote"); }
+
+  document.getElementById("epemumark@gmail.com").href = `mailto:${CONFIG.contactEmail}`;
 
   const waText = encodeURIComponent(CONFIG.whatsappMessage);
-  document.getElementById("whatsappLink").href = `https://wa.me/${CONFIG.whatsappNumber}?text=${waText}`;
+  document.getElementById("https://x.com/BenMarkVictor1").href = `https://wa.me/${CONFIG.whatsappNumber}?text=${waText}`;
 
-  document.getElementById("xLink").href = CONFIG.socials.x;
-  document.getElementById("linkedinLink").href = CONFIG.socials.linkedin;
+  document.getElementById("https://x.com/BenMarkVictor1").href = CONFIG.socials.x;
+  document.getElementById("https://www.linkedin.com/in/mark-ben-victor-93723b241").href = CONFIG.socials.linkedin;
 
   /* ---------------------------------------------------------------
      Mobile menu toggle
@@ -479,9 +532,10 @@
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ email })
         });
-        formNote.textContent = "You're on the list — we'll be in touch!";
+        formNote.textContent = "You're on the list — the product link is unlocked below!";
         formNote.className = "form-note success";
         signupForm.reset();
+        markSignedUp();
       }catch(err){
         formNote.textContent = "Something went wrong sending that — please try again.";
         formNote.className = "form-note error";
@@ -491,9 +545,10 @@
       // The email is logged to the console so you can see it's captured;
       // wire up CONFIG.formEndpoint above to actually store submissions.
       console.log("New signup email:", email);
-      formNote.textContent = "You're on the list — we'll be in touch!";
+      formNote.textContent = "You're on the list — the product link is unlocked below!";
       formNote.className = "form-note success";
       signupForm.reset();
+      markSignedUp();
     }
   }
 
