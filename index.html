@@ -1,1 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Launch — Get Early Access</title>
+<meta name="description" content="Sign up for early access, check out the product, or chat with us directly.">
 
+<!--
+  =====================================================================
+  HOW TO EDIT THIS PAGE (read me first!)
+  =====================================================================
+  Almost everything you need to change lives in ONE place:
+  the CONFIG object near the top of the <script> tag at the bottom
+  of this file. Look for the block that starts with:
+
+      const CONFIG = { ... }
+
+  There you can change:
+    - brandName            -> the name in the header
+    - signupLink            -> where the header "Sign up" button goes
+    - productLink           -> where the header "Product" button goes
+    - whatsappNumber        -> your WhatsApp number (international format, no + or spaces)
+    - whatsappMessage       -> the pre-filled message when someone taps "Chat on WhatsApp"
+    - contactEmail          -> your email address for the "Email me" button
+    - socials.x             -> your X (Twitter) profile URL
+    - socials.linkedin      -> your LinkedIn profile URL
+    - formEndpoint          -> (optional) a real email-signup backend URL
+
+  Every other section below also has an HTML comment telling you
+  what it does, in case you want to edit text or layout directly.
+  =====================================================================
+-->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+  /* ---------------------------------------------------------------
+     DESIGN TOKENS
+     Palette: midnight ink background, warm signal-amber accent,
+     porcelain text, muted periwinkle for secondary text/borders.
+     Type: Fraunces (display, characterful serif) + Work Sans (body/UI).
+     --------------------------------------------------------------- */
+  :root{
+    --ink:        #12161c;
+    --ink-2:      #191f27;
+    --porcelain:  #f3f1ea;
+    --periwinkle: #8f97ab;
+    --amber:      #f2a93b;
+    --amber-dim:  #c98a2e;
+    --line:       rgba(243,241,234,0.12);
+    --radius:     14px;
+    --maxw:       1080px;
+  }
+
+  *{ box-sizing: border-box; }
+  html{ scroll-behavior: smooth; }
+
+  body{
+    margin:0;
+    background: var(--ink);
+    color: var(--porcelain);
+    font-family: 'Work Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1, h2, h3, .brand{
+    font-family: 'Fraunces', Georgia, serif;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    margin: 0;
+  }
+
+  a{ color: inherit; text-decoration: none; }
+  button{ font-family: inherit; cursor: pointer; }
+
+  .wrap{
+    max-width: var(--maxw);
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  /* focus visibility for keyboard users */
+  a:focus-visible, button:focus-visible, input:focus-visible{
+    outline: 2px solid var(--amber);
+    outline-offset: 3px;
+  }
+
+  /* ---------------- HEADER ---------------- */
+  header{
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    backdrop-filter: blur(10px);
+    background: rgba(18,22,28,0.85);
+    border-bottom: 1px solid var(--line);
+  }
+  .header-inner{
+    display:flex;
+    align-items:center;
+    justify-content: space-between;
+    padding: 18px 24px;
+  }
+  .brand{
+    font-size: 1.3rem;
+    color: var(--porcelain);
+  }
+  .brand span{ color: var(--amber); }
+
+  .header-links{
+    display:flex;
+    align-items:center;
+    gap: 12px;
+  }
+  .btn{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    padding: 10px 20px;
+    border-radius: 999px;
+    font-size: 0.92rem;
+    font-weight: 600;
+    border: 1px solid var(--line);
+    transition: transform .15s ease, background .15s ease, border-color .15s ease;
+    white-space: nowrap;
+  }
+  .btn:hover{ transform: translateY(-1px); }
+  .btn-ghost{
+    color: var(--porcelain);
+    background: transparent;
+  }
+  .btn-ghost:hover{ border-color: var(--porcelain); }
+  .btn-solid{
+    background: var(--amber);
+    color: var(--ink);
+    border-color: var(--amber);
+  }
+  .btn-solid:hover{ background: var(--amber-dim); border-color: var(--amber-dim); }
+
+  .menu-toggle{
+    display:none;
+    background:none;
+    border:none;
+    color: var(--porcelain);
+    font-size: 1.6rem;
+  }
+
+  /* ---------------- HERO ---------------- */
+  .hero{
+    padding: 96px 0 72px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before{
+    /* signature ambient glow — the one bold flourish on the page */
+    content:"";
+    position:absolute;
+    top: -220px;
+    right: -160px;
+    width: 520px;
+    height: 520px;
+    background: radial-gradient(circle, rgba(242,169,59,0.25), transparent 70%);
+    pointer-events:none;
+  }
+  .eyebrow{
+    color: var(--amber);
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    margin-bottom: 18px;
+    display:block;
+  }
+  .hero h1{
+    font-size: clamp(2.2rem, 5.2vw, 3.6rem);
+    max-width: 14ch;
+    line-height: 1.05;
+  }
+  .hero p.lead{
+    margin-top: 20px;
+    max-width: 52ch;
+    color: var(--periwinkle);
+    font-size: 1.1rem;
+  }
+
+  /* email signup form */
+  .signup-form{
+    margin-top: 36px;
+    display:flex;
+    gap: 10px;
+    max-width: 460px;
+    flex-wrap: wrap;
+  }
+  .signup-form input[type="email"]{
+    flex: 1 1 240px;
+    padding: 14px 18px;
+    border-radius: 999px;
+    border: 1px solid var(--line);
+    background: var(--ink-2);
+    color: var(--porcelain);
+    font-size: 0.98rem;
+  }
+  .signup-form input::placeholder{ color: var(--periwinkle); }
+  .form-note{
+    margin-top: 12px;
+    font-size: 0.85rem;
+    color: var(--periwinkle);
+    min-height: 1.2em;
+  }
+  .form-note.success{ color: #7fd99a; }
+  .form-note.error{ color: #e58a8a; }
+
+  /* ---------------- CHAT / CONTACT SECTION ---------------- */
+  .chat-section{
+    padding: 64px 0;
+    border-top: 1px solid var(--line);
+  }
+  .chat-grid{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-top: 32px;
+  }
+  .chat-card{
+    background: var(--ink-2);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 28px;
+    display:flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  .chat-card h3{ font-size: 1.15rem; }
+  .chat-card p{ color: var(--periwinkle); margin:0; font-size: 0.95rem; }
+  .chat-icon{
+    width: 40px; height: 40px;
+    border-radius: 10px;
+    display:flex; align-items:center; justify-content:center;
+    background: rgba(242,169,59,0.14);
+    color: var(--amber);
+  }
+
+  /* ---------------- FOOTER / SOCIALS ---------------- */
+  footer{
+    border-top: 1px solid var(--line);
+    padding: 32px 0 48px;
+  }
+  .footer-inner{
+    display:flex;
+    align-items:center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  .footer-copy{
+    color: var(--periwinkle);
+    font-size: 0.85rem;
+  }
+  .socials{
+    display:flex;
+    gap: 14px;
+  }
+  .social-link{
+    width: 38px; height: 38px;
+    border-radius: 50%;
+    border: 1px solid var(--line);
+    display:flex; align-items:center; justify-content:center;
+    color: var(--porcelain);
+    transition: border-color .15s ease, transform .15s ease;
+  }
+  .social-link:hover{ border-color: var(--amber); transform: translateY(-2px); }
+  .social-link svg{ width: 17px; height: 17px; }
+
+  /* ---------------- RESPONSIVE ---------------- */
+  @media (max-width: 720px){
+    .header-links{
+      position: fixed;
+      inset: 64px 16px auto 16px;
+      background: var(--ink-2);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      flex-direction: column;
+      padding: 16px;
+      display: none;
+      gap: 10px;
+    }
+    .header-links.open{ display:flex; }
+    .header-links .btn{ width: 100%; }
+    .menu-toggle{ display:block; }
+    .chat-grid{ grid-template-columns: 1fr; }
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior: auto; }
+    *{ transition: none !important; animation: none !important; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ================= HEADER =================
+     Two links live here: "Sign up" and "Product".
+     Their destinations are set from CONFIG.signupLink / CONFIG.productLink
+     in the script at the bottom — edit the values there, not here. -->
+<header>
+  <div class="wrap header-inner">
+    <a href="#top" class="brand" id="brandName">Brand<span>.</span></a>
+
+    <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu" aria-expanded="false">☰</button>
+
+    <nav class="header-links" id="headerLinks">
+      <a class="btn btn-ghost" id="productLinkEl" href="#product" target="_blank" rel="noopener">Product</a>
+      <a class="btn btn-solid" id="signupLinkEl" href="#signup">Sign up</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <!-- ================= HERO + EMAIL SIGNUP ================= -->
+  <section class="hero" id="top">
+    <div class="wrap">
+      <span class="eyebrow">Early access</span>
+      <h1>Get in before everyone else does.</h1>
+      <p class="lead">Drop your email and we'll let you know the moment it's ready. No spam, just the launch.</p>
+
+      <!-- EMAIL SIGNUP FORM
+           On submit, this currently just validates the email and shows a
+           success message (see the script at the bottom, function
+           handleSignup). To connect it to a real service (Mailchimp,
+           ConvertKit, Google Sheets, your own backend, etc.), set
+           CONFIG.formEndpoint to that service's URL. -->
+      <form class="signup-form" id="signupForm" novalidate>
+        <input
+          type="email"
+          id="signupEmail"
+          name="email"
+          placeholder="you@example.com"
+          required
+          aria-label="Email address"
+        >
+        <button type="submit" class="btn btn-solid">Notify me</button>
+      </form>
+      <p class="form-note" id="formNote" role="status"></p>
+    </div>
+  </section>
+
+  <!-- ================= CHAT WITH ME (email + WhatsApp) =================
+       Two cards: one opens the visitor's email app addressed to
+       CONFIG.contactEmail, the other opens WhatsApp addressed to
+       CONFIG.whatsappNumber with CONFIG.whatsappMessage pre-filled. -->
+  <section class="chat-section" id="chat">
+    <div class="wrap">
+      <h2>Prefer to talk directly?</h2>
+      <p class="lead">Reach out by email or WhatsApp — whichever's easier for you.</p>
+
+      <div class="chat-grid">
+        <div class="chat-card">
+          <div class="chat-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16v16H4z" opacity="0"/><path d="M3 5h18v14H3z"/><path d="m3 6 9 7 9-7"/></svg>
+          </div>
+          <h3>Email me</h3>
+          <p>Send a message straight to my inbox.</p>
+          <a class="btn btn-ghost" id="emailLink" href="#">Email me</a>
+        </div>
+
+        <div class="chat-card">
+          <div class="chat-icon">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.29-1.39a9.9 9.9 0 0 0 4.75 1.21h.01c5.46 0 9.9-4.45 9.9-9.91C21.96 6.45 17.5 2 12.04 2Zm5.8 14.02c-.24.68-1.4 1.3-1.93 1.35-.5.05-1.02.24-3.42-.72-2.9-1.16-4.75-4.13-4.9-4.32-.14-.2-1.17-1.56-1.17-2.97s.73-2.11 1-2.4c.24-.27.53-.34.71-.34.18 0 .35 0 .5.01.16.01.38-.06.6.46.24.57.8 1.99.87 2.14.07.14.11.31.02.5-.09.19-.14.3-.27.46-.14.16-.29.36-.41.48-.14.14-.28.28-.12.55.16.27.71 1.17 1.53 1.9 1.05.94 1.94 1.23 2.21 1.37.27.14.43.11.59-.07.16-.18.68-.79.86-1.06.18-.27.36-.22.6-.13.24.09 1.54.73 1.8.86.27.14.44.2.51.31.07.11.07.63-.17 1.31Z"/></svg>
+          </div>
+          <h3>Chat on WhatsApp</h3>
+          <p>Message straight away, no forms.</p>
+          <a class="btn btn-ghost" id="whatsappLink" href="#" target="_blank" rel="noopener">Chat on WhatsApp</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- ================= FOOTER / SOCIAL LINKS =================
+     X and LinkedIn icons link out to CONFIG.socials.x / CONFIG.socials.linkedin -->
+<footer>
+  <div class="wrap footer-inner">
+    <p class="footer-copy" id="footerCopy">© 2026 Brand. All rights reserved.</p>
+    <div class="socials">
+      <a class="social-link" id="xLink" href="#" target="_blank" rel="noopener" aria-label="Follow on X">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.9 2H22l-7.6 8.7L23.3 22h-6.9l-5.4-6.9L4.8 22H1.7l8.1-9.3L1 2h7l4.9 6.3L18.9 2Zm-1.2 18h1.9L7.4 3.9H5.4L17.7 20Z"/></svg>
+      </a>
+      <a class="social-link" id="linkedinLink" href="#" target="_blank" rel="noopener" aria-label="Connect on LinkedIn">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5ZM3 9h4v12H3V9Zm7 0h3.8v1.7h.05c.53-1 1.83-2 3.77-2 4.03 0 4.78 2.65 4.78 6.1V21h-4v-5.5c0-1.3-.02-3-1.83-3-1.83 0-2.1 1.43-2.1 2.9V21h-4V9Z"/></svg>
+      </a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  /* =====================================================================
+     CONFIG — edit these values to make the page yours.
+     Nothing else in this file needs to change for basic setup.
+     ===================================================================== */
+  const CONFIG = {
+    brandName: "Brand",                       // shown top-left in the header
+    signupLink: "#signup",                     // header "Sign up" button destination
+    productLink: "https://example.com/product", // header "Product" button destination
+
+    contactEmail: "hello@example.com",          // used by the "Email me" button
+
+    whatsappNumber: "2348000000000",            // digits only, include country code, no + or spaces
+    whatsappMessage: "Hi! I'd like to chat about your product.",
+
+    socials: {
+      x: "https://x.com/yourhandle",
+      linkedin: "https://www.linkedin.com/in/yourprofile"
+    },
+
+    // Optional: point this at a real signup backend (Mailchimp, ConvertKit,
+    // a Google Apps Script, your own API, etc). Leave as null to keep the
+    // demo behavior (shows a success message, no data is actually sent).
+    formEndpoint: null
+  };
+
+  /* ---------------------------------------------------------------
+     Wire up the header, chat links, and socials from CONFIG.
+     --------------------------------------------------------------- */
+  document.getElementById("brandName").innerHTML = `${CONFIG.brandName}<span>.</span>`;
+  document.getElementById("footerCopy").textContent = `© ${new Date().getFullYear()} ${CONFIG.brandName}. All rights reserved.`;
+
+  document.getElementById("signupLinkEl").href = CONFIG.signupLink;
+  document.getElementById("productLinkEl").href = CONFIG.productLink;
+
+  document.getElementById("emailLink").href = `mailto:${CONFIG.contactEmail}`;
+
+  const waText = encodeURIComponent(CONFIG.whatsappMessage);
+  document.getElementById("whatsappLink").href = `https://wa.me/${CONFIG.whatsappNumber}?text=${waText}`;
+
+  document.getElementById("xLink").href = CONFIG.socials.x;
+  document.getElementById("linkedinLink").href = CONFIG.socials.linkedin;
+
+  /* ---------------------------------------------------------------
+     Mobile menu toggle
+     --------------------------------------------------------------- */
+  const menuToggle = document.getElementById("menuToggle");
+  const headerLinks = document.getElementById("headerLinks");
+  menuToggle.addEventListener("click", () => {
+    const isOpen = headerLinks.classList.toggle("open");
+    menuToggle.setAttribute("aria-expanded", isOpen);
+  });
+
+  /* ---------------------------------------------------------------
+     Email signup form handling
+     --------------------------------------------------------------- */
+  const signupForm = document.getElementById("signupForm");
+  const formNote = document.getElementById("formNote");
+
+  function isValidEmail(value){
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+  }
+
+  async function handleSignup(e){
+    e.preventDefault();
+    const emailInput = document.getElementById("signupEmail");
+    const email = emailInput.value.trim();
+
+    if(!isValidEmail(email)){
+      formNote.textContent = "That doesn't look like a valid email — double-check and try again.";
+      formNote.className = "form-note error";
+      return;
+    }
+
+    if(CONFIG.formEndpoint){
+      // Send to a real backend if one has been configured.
+      try{
+        formNote.textContent = "Submitting…";
+        formNote.className = "form-note";
+        await fetch(CONFIG.formEndpoint, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ email })
+        });
+        formNote.textContent = "You're on the list — we'll be in touch!";
+        formNote.className = "form-note success";
+        signupForm.reset();
+      }catch(err){
+        formNote.textContent = "Something went wrong sending that — please try again.";
+        formNote.className = "form-note error";
+      }
+    }else{
+      // Demo mode: no backend configured yet.
+      // The email is logged to the console so you can see it's captured;
+      // wire up CONFIG.formEndpoint above to actually store submissions.
+      console.log("New signup email:", email);
+      formNote.textContent = "You're on the list — we'll be in touch!";
+      formNote.className = "form-note success";
+      signupForm.reset();
+    }
+  }
+
+  signupForm.addEventListener("submit", handleSignup);
+</script>
+
+</body>
+</html>
